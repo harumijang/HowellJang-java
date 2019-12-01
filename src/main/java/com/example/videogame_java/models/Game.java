@@ -27,6 +27,9 @@ public class Game {
     this.id = id;
   }
 
+  public Game() {}
+
+
   public Integer getId() {
     return id;
   }
