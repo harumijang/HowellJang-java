@@ -35,8 +35,6 @@ public class ReviewController {
     }
 
 
-
-
     @GetMapping("/api/reviews")
     public List<Review> findAllReviews() {
       return repository.findAllReviews();

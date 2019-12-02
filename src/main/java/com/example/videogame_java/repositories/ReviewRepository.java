@@ -11,11 +11,15 @@ import java.util.List;
 
 public interface ReviewRepository
     extends CrudRepository<Review, Integer> {
-  @Query("SELECT review from Review review WHERE review.rid=:rid")
-  public Review findReviewById(@Param("rid") Integer rid);
+//  @Query("SELECT review from Review review WHERE review.rid=:rid")
+//  public Review findReviewById(@Param("rid") Integer rid);
 
   @Query("select review from Review review")
   public List<Review> findAllReviews();
+
+  @Query("select review from Review review where review.id =:rid")
+  public Review findReviewById(@Param("rid") Integer rid);
+
 
   @Query("select review from Review review where review.consumer.id =:uid")
   public List<Review> findAllReviewsByUser(@Param("uid") Integer userId);
