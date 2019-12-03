@@ -21,7 +21,7 @@ public class ReviewController {
       return repository.findReviewById(rid);
     }
 
-    @GetMapping("/api/users/{uid}/reviews")
+    @GetMapping("/api/consumers/{uid}/reviews")
     public List<Review> findAllReviewsByUser(
         @PathVariable("uid") Integer uid) {
       return repository.findAllReviewsByUser(uid);
