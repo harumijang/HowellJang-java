@@ -26,12 +26,18 @@ import java.util.List;
     return devRepository.findAllDevs();
   }
 
+  @GetMapping("/api/developers/{did}")
+  public Developer findDeveloperById(@PathVariable("did") Integer id) {
+    return devRepository.findDeveloperById(id);
+  }
+
+
   @GetMapping("/api/consumers")
   public List<Consumer> findAllConsumers() {
     return conRepository.findAllConsumers();
   }
 
-  @GetMapping("/api/consumer/{cid}")
+  @GetMapping("/api/consumers/{cid}")
   public Consumer findConsumerById(@PathVariable("cid") Integer id) {
     return conRepository.findConsumerById(id);
   }
@@ -40,6 +46,11 @@ import java.util.List;
   @PostMapping("/api/consumers")
   public void createConsumer(@RequestBody Consumer consumer) {
     conRepository.save(consumer);
+  }
+
+  @PostMapping("/api/developers")
+  public void createDeveloper(@RequestBody Developer developer) {
+    devRepository.save(developer);
   }
 
 
