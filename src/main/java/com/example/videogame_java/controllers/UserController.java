@@ -53,6 +53,15 @@ import java.util.List;
     devRepository.save(developer);
   }
 
+  @DeleteMapping("/api/consumers/{cid}")
+  public void deleteConsumer(@PathVariable("cid") Integer cid) {
+    conRepository.delete(this.findConsumerById(cid));
+  }
+
+  @DeleteMapping("/api/developers/{did}")
+  public void deleteDeveloper(@PathVariable("did") Integer did) {
+    devRepository.delete(this.findDeveloperById(did));
+  }
 
 }
 

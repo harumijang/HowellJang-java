@@ -39,4 +39,10 @@ public class GameController {
     return repository.findAllGamesByUser(uid);
   }
 
+  @DeleteMapping("/api/games/{gid}")
+  public List<Game> deleteGame(@PathVariable("gid") Integer gid) {
+    repository.delete(this.findGameById(gid));
+    return repository.findAllGames();
+  }
+
 }

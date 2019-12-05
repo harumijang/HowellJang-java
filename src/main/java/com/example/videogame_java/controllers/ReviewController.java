@@ -40,9 +40,16 @@ public class ReviewController {
     }
 
     @PostMapping("/api/reviews")
-    public Review createReview(
+    public List<Review> createReview(
         @RequestBody Review review) {
-      return repository.save(review);
+      repository.save(review);
+      return repository.findAllReviews();
+    }
+
+    @DeleteMapping("/api/reviews/{rid}")
+    public List<Review> deleteReview(@PathVariable("rid") Integer rid) {
+      repository.delete(this.findReviewById(rid));
+      return repository.findAllReviews();
     }
   }
 
