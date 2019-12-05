@@ -5,11 +5,11 @@ import com.example.videogame_java.models.Developer;
 import com.example.videogame_java.repositories.ConsumerRepository;
 import com.example.videogame_java.repositories.DevRepository;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-  ;import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+import java.util.List;
 
 @CrossOrigin("*")
 @RestController
