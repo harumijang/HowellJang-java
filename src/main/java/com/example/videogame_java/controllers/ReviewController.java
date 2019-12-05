@@ -39,9 +39,11 @@ public class ReviewController {
       return repository.findAllReviews();
     }
 
+//    @PostMapping("/api/reviews?consumer=x&gamer=y")
     @PostMapping("/api/reviews")
     public List<Review> createReview(
         @RequestBody Review review) {
+      System.out.println("this is review: " + review.getReviewContent()+review.getGame()+review.getConsumer());
       repository.save(review);
       return repository.findAllReviews();
     }
