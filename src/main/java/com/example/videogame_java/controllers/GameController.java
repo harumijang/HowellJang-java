@@ -34,7 +34,7 @@ public class GameController {
   }
 
   @GetMapping("/api/developers/{uid}/games")
-  public List<Review> findAllGamesByUser(
+  public List<Game> findAllGamesByUser(
       @PathVariable("uid") Integer uid) {
     return repository.findAllGamesByUser(uid);
   }
