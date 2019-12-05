@@ -15,7 +15,7 @@ public interface DevRepository extends  CrudRepository<Developer, Integer> {
     @Query("select developer from Developer developer")
     public List<Developer> findAllDevs();
 
-  @Query("select developer from Develoepr developer where developer.id=:developerId")
+  @Query("select developer from Developer developer where developer.id=:developerId")
   public Developer findDeveloperById(@Param("developerId") Integer id);
 
   }
