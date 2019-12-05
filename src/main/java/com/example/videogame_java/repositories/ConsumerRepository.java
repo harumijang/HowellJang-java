@@ -15,6 +15,9 @@ public interface ConsumerRepository extends  CrudRepository<Consumer, Integer> {
   @Query("select consumer from Consumer consumer")
   public List<Consumer> findAllConsumers();
 
+  @Query("select consumer from Consumer consumer where consumer.id=:consumerId")
+  public Consumer findConsumerById(@Param("consumerId") Integer id);
+
 
 }
 

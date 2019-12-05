@@ -31,6 +31,18 @@ import java.util.List;
     return conRepository.findAllConsumers();
   }
 
+  @GetMapping("/api/consumer/{cid}")
+  public Consumer findConsumerById(@PathVariable("cid") Integer id) {
+    return conRepository.findConsumerById(id);
+  }
+
+
+  @PostMapping("/api/consumers")
+  public void createConsumer(@RequestBody Consumer consumer) {
+    conRepository.save(consumer);
+  }
+
+
 }
 
 
