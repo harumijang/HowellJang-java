@@ -24,9 +24,16 @@ public class Review {
   public Review() {
   }
 
+  public Review(String reviewContent, Game game, Consumer consumer) {
+    this.reviewContent = reviewContent;
+    this.game = game;
+    this.consumer = consumer;
+  }
+
   public Review(Integer id) {
     this.id = id;
   }
+
 
   public Consumer getConsumer() {
     return consumer;
