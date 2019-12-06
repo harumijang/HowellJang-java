@@ -13,6 +13,7 @@ public class Game {
   @GeneratedValue
       (strategy = GenerationType.IDENTITY)
   private Integer id;
+  private String name;
 
   @OneToMany(mappedBy = "game")
   private List<Review> reviews;
@@ -29,6 +30,13 @@ public class Game {
 
   public Game() {}
 
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
 
   public Integer getId() {
     return id;
