@@ -79,8 +79,11 @@ import java.util.List;
     conRepository.save(consumer);
   }
 
-
-
+  @GetMapping("/api/games/{gid}/developers")
+  public List<Developer> findAllDevsByGame(
+      @PathVariable("gid") Integer gid) {
+    return devRepository.findAllDevsByGame(gid);
+  }
 
 
 }
