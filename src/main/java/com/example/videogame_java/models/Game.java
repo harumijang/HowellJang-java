@@ -27,15 +27,16 @@ public class Game {
   private Date date;
 //  private List<Developer> otherDevs;
   private String videoURL;
-  @Column
-  @ElementCollection(targetClass=String.class)
-  private List<String> platforms;
-  @Column
-  @ElementCollection(targetClass=String.class)
-  private List<String> stores;
-  @Column
-  @ElementCollection(targetClass=String.class)
-  private List<String> imgURLs;
+
+//  @Column
+//  @ElementCollection(targetClass=String.class)
+//  private List<String> platforms;
+//  @Column
+//  @ElementCollection(targetClass=String.class)
+//  private List<String> stores;
+//  @Column
+//  @ElementCollection(targetClass=String.class)
+//  private List<String> imgURLs;
 
 
 
@@ -109,41 +110,41 @@ public class Game {
     this.videoURL = videoURL;
   }
 
-  public List<String> getPlatforms() {
-    return platforms;
-  }
-
-  public void setPlatforms(List<String> platforms) {
-    this.platforms = platforms;
-  }
-
-  public List<String> getStores() {
-    return stores;
-  }
-
-  public void setStores(List<String> stores) {
-    this.stores = stores;
-  }
+//  public List<String> getPlatforms() {
+//    return platforms;
+//  }
+//
+//  public void setPlatforms(List<String> platforms) {
+//    this.platforms = platforms;
+//  }
+//
+//  public List<String> getStores() {
+//    return stores;
+//  }
+//
+//  public void setStores(List<String> stores) {
+//    this.stores = stores;
+//  }
 
   public void update(Game newGame) {
     this.setTitle(newGame.title);
     this.setDate(newGame.date);
-    this.setImgURLs(newGame.imgURLs);
 //    this.setOtherDevs(newGame.otherDevs);
     this.setVideoURL(newGame.videoURL);
-    this.setPlatforms(newGame.platforms);
-    this.setStores(newGame.stores);
+//    this.setPlatforms(newGame.platforms);
+//    this.setStores(newGame.stores);
+//    this.setImgURLs(newGame.imgURLs);
 
   }
 
-  public List<String> getImgURLs() {
-    return imgURLs;
-  }
-
-  public void setImgURLs(List<String> imgURLs) {
-    this.imgURLs = imgURLs;
-
-  }
+//  public List<String> getImgURLs() {
+//    return imgURLs;
+//  }
+//
+//  public void setImgURLs(List<String> imgURLs) {
+//    this.imgURLs = imgURLs;
+//
+//  }
 
 
 }
