@@ -53,5 +53,14 @@ public class ReviewController {
       repository.delete(this.findReviewById(rid));
       return repository.findAllReviews();
     }
+
+    @PutMapping("api/reviews/{rid}")
+    public void updateReview(@PathVariable("rid") Integer id,
+                         @RequestBody Review newReview) {
+    Review review = repository.findReviewById(id);
+    review.update(newReview);
+    repository.save(review);
+  }
+
   }
 

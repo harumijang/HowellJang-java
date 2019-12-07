@@ -67,5 +67,8 @@ public class Review {
     this.reviewContent = review;
   }
 
+  public void update(Review newReview) {
+    this.setReviewContent(newReview.reviewContent);
+  }
 
 }

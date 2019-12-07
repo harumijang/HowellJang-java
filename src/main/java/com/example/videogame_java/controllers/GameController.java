@@ -45,4 +45,12 @@ public class GameController {
     return repository.findAllGames();
   }
 
+  @PutMapping("api/games/{wid}")
+  public void updateGame(@PathVariable("gid") Integer id,
+                                   @RequestBody Game newGame) {
+    Game game = repository.findGameById(id);
+    game.update(newGame);
+    repository.save(game);
+  }
+
 }
