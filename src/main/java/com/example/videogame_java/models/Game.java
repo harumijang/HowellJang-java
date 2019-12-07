@@ -14,7 +14,7 @@ public class Game {
   @GeneratedValue
       (strategy = GenerationType.IDENTITY)
   private Integer id;
-  private String title;
+  private String name;
 
   @OneToMany(mappedBy = "game")
   private List<Review> reviews;
@@ -22,22 +22,12 @@ public class Game {
   @ManyToOne
   @JsonIgnore
   private Developer developer;
-
-  private Integer rating;
-  private Date date;
-//  private List<Developer> otherDevs;
+  private String date;
+// private List<Developer> otherDevs;
   private String videoURL;
-
-//  @Column
-//  @ElementCollection(targetClass=String.class)
-//  private List<String> platforms;
-//  @Column
-//  @ElementCollection(targetClass=String.class)
-//  private List<String> stores;
-//  @Column
-//  @ElementCollection(targetClass=String.class)
-//  private List<String> imgURLs;
-
+  private String platforms;
+  private String stores;
+  private String imgURLs;
 
 
   public Game(Integer id) {
@@ -46,12 +36,47 @@ public class Game {
 
   public Game() {}
 
-  public String getTitle() {
-    return title;
+
+  public String getGenres() {
+    return genres;
   }
 
-  public void setTitle(String title) {
-    this.title = title;
+  public void setGenres(String genres) {
+    this.genres = genres;
+  }
+
+  private String genres;
+
+  public String getPlatforms() {
+    return platforms;
+  }
+
+  public void setPlatforms(String platforms) {
+    this.platforms = platforms;
+  }
+
+  public String getStores() {
+    return stores;
+  }
+
+  public void setStores(String stores) {
+    this.stores = stores;
+  }
+
+  public String getImgURLs() {
+    return imgURLs;
+  }
+
+  public void setImgURLs(String imgURLs) {
+    this.imgURLs = imgURLs;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public Integer getId() {
@@ -70,13 +95,6 @@ public class Game {
     this.reviews = reviews;
   }
 
-  public Integer getRating() {
-    return rating;
-  }
-
-  public void setRating(Integer rating) {
-    this.rating = rating;
-  }
 
   public Developer getDeveloper() {
     return developer;
@@ -86,11 +104,11 @@ public class Game {
     this.developer = developer;
   }
 
-  public Date getDate() {
+  public String getDate() {
     return date;
   }
 
-  public void setDate(Date newDate) {
+  public void setDate(String newDate) {
     this.date = date;
   }
 
@@ -110,41 +128,18 @@ public class Game {
     this.videoURL = videoURL;
   }
 
-//  public List<String> getPlatforms() {
-//    return platforms;
-//  }
-//
-//  public void setPlatforms(List<String> platforms) {
-//    this.platforms = platforms;
-//  }
-//
-//  public List<String> getStores() {
-//    return stores;
-//  }
-//
-//  public void setStores(List<String> stores) {
-//    this.stores = stores;
-//  }
 
   public void update(Game newGame) {
-    this.setTitle(newGame.title);
+    this.setName(newGame.name);
     this.setDate(newGame.date);
-//    this.setOtherDevs(newGame.otherDevs);
     this.setVideoURL(newGame.videoURL);
-//    this.setPlatforms(newGame.platforms);
-//    this.setStores(newGame.stores);
-//    this.setImgURLs(newGame.imgURLs);
+    //    this.setOtherDevs(newGame.otherDevs);
+    this.setPlatforms(newGame.platforms);
+    this.setStores(newGame.stores);
+    this.setImgURLs(newGame.imgURLs);
+    this.setGenres(newGame.genres);
 
   }
-
-//  public List<String> getImgURLs() {
-//    return imgURLs;
-//  }
-//
-//  public void setImgURLs(List<String> imgURLs) {
-//    this.imgURLs = imgURLs;
-//
-//  }
 
 
 }
