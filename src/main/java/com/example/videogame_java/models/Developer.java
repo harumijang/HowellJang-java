@@ -1,4 +1,6 @@
 package com.example.videogame_java.models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 import javax.persistence.*;
@@ -14,7 +16,11 @@ public class Developer implements User {
   private String username;
   private String password;
 
-  @OneToMany(mappedBy = "developer")
+//  @OneToMany(mappedBy = "developer")
+//  private List<Game> games;
+
+  @JsonIgnore
+  @ManyToMany(fetch = FetchType.LAZY)
   private List<Game> games;
 
   public Developer(Integer id) {

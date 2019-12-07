@@ -9,6 +9,8 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+import static org.hibernate.sql.ast.Clause.WHERE;
+
 public interface GameRepository extends CrudRepository<Game, Integer> {
   @Query("select game from Game game")
   public List<Game> findAllGames();
@@ -16,7 +18,12 @@ public interface GameRepository extends CrudRepository<Game, Integer> {
   @Query("select game from Game game where game.id =:gid")
   public Game findGameById(@Param("gid") Integer gid);
 
-  @Query("select game from Game game where game.developer.id =:uid")
-  List<Game> findAllGamesByUser(Integer uid);
+//  @Query("select game from Game game where game.developer.id =:uid")
+//  List<Game> findAllGamesByUser(Integer uid);
+
+  @Query(
+      "select g FROM Game g JOIN g.developers d WHERE d.id = :devID"
+  )
+      public List<Game> findAllGamesByUser(@Param("devID") Integer devID);
 
 }

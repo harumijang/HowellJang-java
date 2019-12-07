@@ -19,9 +19,14 @@ public class Game {
   @OneToMany(mappedBy = "game")
   private List<Review> reviews;
 
-  @ManyToOne
-  @JsonIgnore
-  private Developer developer;
+//  @ManyToOne
+//  @JsonIgnore
+//  private Developer developer;
+
+
+  @ManyToMany(mappedBy = "games")
+  List<Developer> developers;
+
   private String date;
 // private List<Developer> otherDevs;
   private String videoURL;
@@ -96,12 +101,12 @@ public class Game {
   }
 
 
-  public Developer getDeveloper() {
-    return developer;
+  public List<Developer> getDevelopers() {
+    return developers;
   }
 
-  public void setDeveloper(Developer developer) {
-    this.developer = developer;
+  public void setDevelopers(List<Developer> developer) {
+    this.developers = developers;
   }
 
   public String getDate() {
@@ -133,11 +138,11 @@ public class Game {
     this.setName(newGame.name);
     this.setDate(newGame.date);
     this.setVideoURL(newGame.videoURL);
-    //    this.setOtherDevs(newGame.otherDevs);
     this.setPlatforms(newGame.platforms);
     this.setStores(newGame.stores);
     this.setImgURLs(newGame.imgURLs);
     this.setGenres(newGame.genres);
+    this.setDevelopers(newGame.developers);
 
   }
 
