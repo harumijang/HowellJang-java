@@ -66,4 +66,10 @@ public class Developer implements User {
   public void setGames(List<Game> games) {
     this.games = games;
   }
+
+  public void update(Developer newDev) {
+    this.password = newDev.password;
+    this.username = newDev.username;
+    this.games = newDev.games;
+  }
 }

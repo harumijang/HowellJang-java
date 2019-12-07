@@ -63,6 +63,26 @@ import java.util.List;
     devRepository.delete(this.findDeveloperById(did));
   }
 
+  @PutMapping("api/developers/{did}")
+  public void updateDeveloper(@PathVariable("did") Integer did,
+                           @RequestBody Developer newDev) {
+    Developer dev = devRepository.findDeveloperById(did);
+    dev.update(newDev);
+    devRepository.save(dev);
+  }
+
+  @PutMapping("api/consumers/{cid}")
+  public void updateConsumer(@PathVariable("cid") Integer cid,
+                           @RequestBody Consumer newConsumer) {
+    Consumer consumer = conRepository.findConsumerById(cid);
+    consumer.update(newConsumer);
+    conRepository.save(consumer);
+  }
+
+
+
+
+
 }
 
 
