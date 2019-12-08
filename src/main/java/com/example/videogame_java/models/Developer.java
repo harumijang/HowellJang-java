@@ -20,7 +20,7 @@ public class Developer implements User {
 //  private List<Game> games;
 
   @JsonIgnore
-  @ManyToMany(fetch = FetchType.LAZY)
+  @ManyToMany(mappedBy = "developers")
   private List<Game> games;
 
   public Developer(Integer id) {

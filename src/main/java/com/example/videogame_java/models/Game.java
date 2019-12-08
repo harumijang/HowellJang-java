@@ -25,7 +25,7 @@ public class Game {
 //  private Developer developer;
 
 
-  @ManyToMany(mappedBy = "games")
+  @ManyToMany(fetch = FetchType.LAZY)
   List<Developer> developers;
 
   private String date;
