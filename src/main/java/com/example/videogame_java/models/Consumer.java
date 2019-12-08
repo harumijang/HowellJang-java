@@ -63,8 +63,11 @@ public class Consumer implements User {
 
 
   public void update(Consumer newConsumer) {
-    this.password = newConsumer.password;
-    this.username = newConsumer.username;
-    this.reviews = newConsumer.reviews;
+    if (!newConsumer.password.isEmpty()) {
+      this.password = newConsumer.password;
+    }
+    if (!newConsumer.username.isEmpty()) {
+      this.username = newConsumer.username;
+    }
   }
 }

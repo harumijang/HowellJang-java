@@ -25,7 +25,7 @@ public class Game {
 //  private Developer developer;
 
 
-  @ManyToMany(fetch = FetchType.LAZY)
+  @ManyToMany(mappedBy = "games")
   List<Developer> developers;
 
   private String date;
@@ -136,15 +136,29 @@ public class Game {
 
 
   public void update(Game newGame) {
-    this.setName(newGame.name);
-    this.setDate(newGame.date);
-    this.setVideoURL(newGame.videoURL);
-    this.setPlatforms(newGame.platforms);
-    this.setStores(newGame.stores);
-    this.setImgURLs(newGame.imgURLs);
-    this.setGenres(newGame.genres);
+    if (!newGame.name.isEmpty()) {
+      this.setName(newGame.name);
+    }
+    if (!newGame.date.isEmpty()) {
+      this.setDate(newGame.date);
+    }
+    if (!newGame.videoURL.isEmpty()) {
+      this.setVideoURL(newGame.videoURL);
+    }
+    if(!newGame.platforms.isEmpty()) {
+      this.setPlatforms(newGame.platforms);
+    }
+    if(!newGame.stores.isEmpty()) {
+      this.setStores(newGame.stores);
+    }
+    if(!newGame.imgURLs.isEmpty()) {
+      this.setImgURLs(newGame.imgURLs);
+    }
+    if(!newGame.genres.isEmpty()) {
+      this.setGenres(newGame.genres);
+    }
+    if(!newGame.developers.isEmpty())
     this.setDevelopers(newGame.developers);
-
   }
 
 

@@ -20,7 +20,7 @@ public class Developer implements User {
 //  private List<Game> games;
 
   @JsonIgnore
-  @ManyToMany(mappedBy = "developers")
+  @ManyToMany(fetch = FetchType.LAZY)
   private List<Game> games;
 
   public Developer(Integer id) {
@@ -38,7 +38,6 @@ public class Developer implements User {
   @Override
   public void setPassword(String password) {
     this.password = password;
-
   }
 
   @Override
@@ -68,8 +67,11 @@ public class Developer implements User {
   }
 
   public void update(Developer newDev) {
-    this.password = newDev.password;
-    this.username = newDev.username;
-    this.games = newDev.games;
+    if (!newDev.password.isEmpty()) {
+      this.password = newDev.password;
+    }
+    if (!newDev.username.isEmpty()) {
+      this.username = newDev.username;
+    }
   }
 }
