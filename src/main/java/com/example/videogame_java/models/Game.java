@@ -1,6 +1,7 @@
 package com.example.videogame_java.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -147,4 +148,8 @@ public class Game {
   }
 
 
+  public void updateDevs(Developer[] devs) {
+    List<Developer> list = Arrays.asList(devs);
+    this.developers = list;
+  }
 }

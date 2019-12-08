@@ -2,13 +2,17 @@ package com.example.videogame_java.controllers;
 
 import com.example.videogame_java.models.Consumer;
 import com.example.videogame_java.models.Developer;
+import com.example.videogame_java.models.Game;
 import com.example.videogame_java.repositories.ConsumerRepository;
 import com.example.videogame_java.repositories.DevRepository;
+import com.example.videogame_java.repositories.GameRepository;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.lang.reflect.Array;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -18,6 +22,8 @@ import java.util.List;
       DevRepository devRepository;
       @Autowired
       ConsumerRepository conRepository;
+      @Autowired
+      GameRepository gameRepository;
 
 
 
@@ -84,6 +90,14 @@ import java.util.List;
       @PathVariable("gid") Integer gid) {
     return devRepository.findAllDevsByGame(gid);
   }
+
+  @PutMapping("/api/games/{gid}/developers")
+  public void addDevsByGame(@PathVariable("gid") Integer gid, @RequestBody Developer[] devs) {
+    Game game = gameRepository.findGameById(gid);
+    game.updateDevs(devs);
+    gameRepository.save(game);
+  }
+
 
 
 }
