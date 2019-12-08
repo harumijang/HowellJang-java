@@ -21,6 +21,10 @@ public class GameController {
     return repository.findGameById(gid);
   }
 
+  public Game findGameeById(Integer gid) {
+    return repository.findGameById(gid);
+  }
+
   @GetMapping("/api/games")
     public List<Game> findAllGames() {
     return repository.findAllGames();

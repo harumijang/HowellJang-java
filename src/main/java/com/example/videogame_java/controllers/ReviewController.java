@@ -1,11 +1,24 @@
 package com.example.videogame_java.controllers;
 
+import com.google.gson.Gson;
+
+import com.example.videogame_java.models.Consumer;
+import com.example.videogame_java.models.Game;
 import com.example.videogame_java.models.Review;
+import com.example.videogame_java.repositories.ConsumerRepository;
+import com.example.videogame_java.repositories.GameRepository;
 import com.example.videogame_java.repositories.ReviewRepository;
 
+import netscape.javascript.JSObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.web.bind.annotation.*;
 ;import java.util.List;
+
+
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -13,6 +26,9 @@ import org.springframework.web.bind.annotation.*;
 public class ReviewController {
    @Autowired
     ReviewRepository repository;
+    GameRepository gameRepo;
+    ConsumerRepository conRepo;
+
 
     @GetMapping("/api/review/{rid}")
     public Review findReviewById(
@@ -62,11 +78,22 @@ public class ReviewController {
 ////  }
 
     @PostMapping("/api/games/{gid}/reviews")
-  public List<Review> createReview(
-      @RequestBody Review review) {
-    System.out.println("this is review: " + review.getReviewContent()+review.getGame().getName()+review.getConsumer().getUsername());
-    repository.save(review);
-    return repository.findAllReviews();
+  public List<Review> createReview (
+      @RequestBody String content) throws JSONException {
+        JSONObject jsonObj = new JSONObject(content);
+        String reviewString = jsonObj.getString("content");
+        Integer reviewGID = jsonObj.getInt("gid");
+        Integer reviewUID = jsonObj.getInt("uid");
+        System.out.println(reviewString + " " + reviewGID + " " + reviewUID);
+//        Review newReview = new Review();
+//        newReview.setReviewContent(reviewString);
+
+        System.out.println("con repo: " +
+            conRepo.findConsumerById(31).getUsername());
+//        newReview.setGame(gameCont.findGameById(reviewGID));
+//        newReview.setConsumer(userCont.findConsumerById(reviewUID));
+//        repository.save(newReview);
+        return repository.findAllReviews();
   }
 
 
