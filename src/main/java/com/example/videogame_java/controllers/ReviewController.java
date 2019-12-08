@@ -1,20 +1,14 @@
 package com.example.videogame_java.controllers;
 
-import com.google.gson.Gson;
 
-import com.example.videogame_java.models.Consumer;
-import com.example.videogame_java.models.Game;
 import com.example.videogame_java.models.Review;
 import com.example.videogame_java.repositories.ConsumerRepository;
 import com.example.videogame_java.repositories.GameRepository;
 import com.example.videogame_java.repositories.ReviewRepository;
 
-import netscape.javascript.JSObject;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.web.bind.annotation.*;
 ;import java.util.List;
 
