@@ -13,50 +13,51 @@ import org.springframework.web.bind.annotation.*;
 ;import java.util.List;
 
 
-
 @CrossOrigin(origins = "*")
 @RestController
 
 public class ReviewController {
-   @Autowired
-    ReviewRepository repository;
-    GameRepository gameRepo;
-    ConsumerRepository conRepo;
+  @Autowired
+  ReviewRepository repository;
+  @Autowired
+  GameRepository gameRepo;
+  @Autowired
+  ConsumerRepository conRepo;
 
 
-    @GetMapping("/api/review/{rid}")
-    public Review findReviewById(
-        @PathVariable("rid")
-            Integer rid) {
-      return repository.findReviewById(rid);
-    }
+  @GetMapping("/api/review/{rid}")
+  public Review findReviewById(
+      @PathVariable("rid")
+          Integer rid) {
+    return repository.findReviewById(rid);
+  }
 
-    @GetMapping("/api/consumers/{uid}/reviews")
-    public List<Review> findAllReviewsByUser(
-        @PathVariable("uid") Integer uid) {
-      return repository.findAllReviewsByUser(uid);
-    }
+  @GetMapping("/api/consumers/{uid}/reviews")
+  public List<Review> findAllReviewsByUser(
+      @PathVariable("uid") Integer uid) {
+    return repository.findAllReviewsByUser(uid);
+  }
 
-    @GetMapping("api/games/{gid}/reviews")
-    public List<Review> findAllReviewsForGame(
-        @PathVariable("gid") Integer gid) {
-      return repository.findAllReviewsForGame(gid);
-    }
+  @GetMapping("api/games/{gid}/reviews")
+  public List<Review> findAllReviewsForGame(
+      @PathVariable("gid") Integer gid) {
+    return repository.findAllReviewsForGame(gid);
+  }
 
-    @GetMapping("/api/reviews")
-    public List<Review> findAllReviews() {
-      return repository.findAllReviews();
-    }
+  @GetMapping("/api/reviews")
+  public List<Review> findAllReviews() {
+    return repository.findAllReviews();
+  }
 
-    @DeleteMapping("/api/reviews/{rid}")
-    public List<Review> deleteReview(@PathVariable("rid") Integer rid) {
-      repository.delete(this.findReviewById(rid));
-      return repository.findAllReviews();
-    }
+  @DeleteMapping("/api/reviews/{rid}")
+  public List<Review> deleteReview(@PathVariable("rid") Integer rid) {
+    repository.delete(this.findReviewById(rid));
+    return repository.findAllReviews();
+  }
 
-    @PutMapping("api/reviews/{rid}")
-    public void updateReview(@PathVariable("rid") Integer id,
-                         @RequestBody Review newReview) {
+  @PutMapping("api/reviews/{rid}")
+  public void updateReview(@PathVariable("rid") Integer id,
+                           @RequestBody Review newReview) {
     Review review = repository.findReviewById(id);
     review.update(newReview);
     repository.save(review);
@@ -71,23 +72,21 @@ public class ReviewController {
 ////    return repository.findAllReviews();
 ////  }
 
-    @PostMapping("/api/games/{gid}/reviews")
-  public List<Review> createReview (
+  @PostMapping("/api/games/{gid}/reviews")
+  public List<Review> createReview(
       @RequestBody String content) throws JSONException {
-        JSONObject jsonObj = new JSONObject(content);
-        String reviewString = jsonObj.getString("content");
-        Integer reviewGID = jsonObj.getInt("gid");
-        Integer reviewUID = jsonObj.getInt("uid");
-        System.out.println(reviewString + " " + reviewGID + " " + reviewUID);
-//        Review newReview = new Review();
-//        newReview.setReviewContent(reviewString);
-
-        System.out.println("con repo: " +
-            conRepo.findConsumerById(31).getUsername());
-//        newReview.setGame(gameCont.findGameById(reviewGID));
-//        newReview.setConsumer(userCont.findConsumerById(reviewUID));
-//        repository.save(newReview);
-        return repository.findAllReviews();
+    JSONObject jsonObj = new JSONObject(content);
+    String reviewString = jsonObj.getString("content");
+    Integer reviewGID = jsonObj.getInt("gid");
+    Integer reviewUID = jsonObj.getInt("uid");
+    System.out.println(reviewString + " " + reviewGID + " " + reviewUID);
+    Review newReview = new Review();
+    newReview.setReviewContent(reviewString);
+    newReview.setGame(gameRepo.findGameById(reviewGID));
+    newReview.setConsumer(conRepo.findConsumerById(reviewUID));
+    System.out.println("consumer: " + newReview.getConsumer().getUsername());
+    repository.save(newReview);
+    return repository.findAllReviews();
   }
 
 

@@ -40,7 +40,7 @@ public class Review {
   }
 
   public void setConsumer(Consumer user) {
-    this.consumer = consumer;
+    this.consumer = user;
   }
 
   public Integer getId() {
