@@ -98,7 +98,13 @@ import java.util.List;
     gameRepository.save(game);
   }
 
-
+  @PostMapping("/api/developers/{did}/games")
+  public void addGameToDev(@PathVariable("did") Integer id,
+                           @RequestBody Game game) {
+    Developer dev = devRepository.findDeveloperById(id);
+    dev.updateGames(game);
+    devRepository.save(dev);
+  }
 
 }
 

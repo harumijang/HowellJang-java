@@ -1,6 +1,7 @@
 package com.example.videogame_java.controllers;
 
 
+import com.example.videogame_java.models.Game;
 import com.example.videogame_java.models.Review;
 import com.example.videogame_java.repositories.ConsumerRepository;
 import com.example.videogame_java.repositories.GameRepository;
@@ -72,8 +73,8 @@ public class ReviewController {
 ////    return repository.findAllReviews();
 ////  }
 
-  @PostMapping("/api/games/{gid}/reviews")
-  public List<Review> createReview(
+  @PostMapping("/api/games/{gameId}/reviews")
+  public List<Review> createReview(@PathVariable("gameId") Integer gameId,
       @RequestBody String content) throws JSONException {
     JSONObject jsonObj = new JSONObject(content);
     String reviewString = jsonObj.getString("content");
@@ -81,14 +82,39 @@ public class ReviewController {
     Integer reviewUID = jsonObj.getInt("uid");
     System.out.println(reviewString + " " + reviewGID + " " + reviewUID);
     Review newReview = new Review();
+
+    if (gameRepo.howManyRecords(reviewGID) != 0) {
     newReview.setReviewContent(reviewString);
     newReview.setGame(gameRepo.findGameById(reviewGID));
     newReview.setConsumer(conRepo.findConsumerById(reviewUID));
-    System.out.println("consumer: " + newReview.getConsumer().getUsername());
+
     repository.save(newReview);
     return repository.findAllReviewsForGame(reviewGID);
-  }
+
+    // if the game doesn't exist in our database
+  } else {
+      Game newGame = new Game();
+      newGame.setId(reviewGID);
+      System.out.println("new game id: " + newGame.getId());
+      // add set name here
+
+      gameRepo.save(newGame);
+//      newReview.setReviewContent(reviewString);
+//      newReview.setGame(newGame);
+//      newReview.setConsumer(conRepo.findConsumerById(reviewUID));
+//      repository.save(newReview);
+//      System.out.println("this should be 1" + newGame.getReviews().size());
+//      return repository.findAllReviewsForGame(reviewGID);
+      return repository.findAllReviews();
 
 
-}
+    }
+
+    }
+
+    }
+
+
+
+
 

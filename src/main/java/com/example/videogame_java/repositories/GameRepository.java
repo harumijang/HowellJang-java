@@ -21,9 +21,11 @@ public interface GameRepository extends CrudRepository<Game, Integer> {
 //  @Query("select game from Game game where game.developer.id =:uid")
 //  List<Game> findAllGamesByUser(Integer uid);
 
-  @Query(
-      "select g FROM Game g JOIN g.developers d WHERE d.id = :devID"
-  )
+  @Query("select g FROM Game g JOIN g.developers d WHERE d.id = :devID")
       public List<Game> findAllGamesByUser(@Param("devID") Integer devID);
+
+  @Query("SELECT COUNT (id) FROM Game Where id = :gid")
+  public Integer howManyRecords(@Param("gid") Integer gid);
+
 
 }

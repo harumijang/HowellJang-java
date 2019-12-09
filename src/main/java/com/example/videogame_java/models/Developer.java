@@ -1,7 +1,11 @@
 package com.example.videogame_java.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.persistence.*;
 
@@ -73,5 +77,10 @@ public class Developer implements User {
     if (!newDev.username.isEmpty()) {
       this.username = newDev.username;
     }
+  }
+
+  public void updateGames(Game game) {
+      this.games.add(game);
+
   }
 }
