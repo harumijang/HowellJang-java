@@ -86,7 +86,7 @@ public class ReviewController {
     newReview.setConsumer(conRepo.findConsumerById(reviewUID));
     System.out.println("consumer: " + newReview.getConsumer().getUsername());
     repository.save(newReview);
-    return repository.findAllReviews();
+    return repository.findAllReviewsForGame(reviewGID);
   }
 
 
