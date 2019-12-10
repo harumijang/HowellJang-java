@@ -64,14 +64,6 @@ public class ReviewController {
     repository.save(review);
   }
 
-  //    @PostMapping("/api/reviews?consumer=x&gamer=y")
-//  @PostMapping("/api/reviews/{gid}")
-////  public List<Review> createReview(
-////      @RequestBody Review review) {
-////    System.out.println("this is review: " + review.getReviewContent()+review.getGame().getName()+review.getConsumer().getUsername());
-////    repository.save(review);
-////    return repository.findAllReviews();
-////  }
 
   @PostMapping("/api/games/{gameId}/reviews")
   public List<Review> createReview(@PathVariable("gameId") Integer gameId,

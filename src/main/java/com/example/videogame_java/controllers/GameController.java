@@ -1,4 +1,5 @@
 package com.example.videogame_java.controllers;
+import com.example.videogame_java.models.Developer;
 import com.example.videogame_java.models.Game;
 import com.example.videogame_java.models.Review;
 import com.example.videogame_java.repositories.GameRepository;
@@ -21,9 +22,6 @@ public class GameController {
     return repository.findGameById(gid);
   }
 
-  public Game findGameeById(Integer gid) {
-    return repository.findGameById(gid);
-  }
 
   @GetMapping("/api/games")
     public List<Game> findAllGames() {
@@ -32,9 +30,14 @@ public class GameController {
   }
 
   @PostMapping("/api/games")
-  public Game createGame(
-      @RequestBody Game game) {
-    return repository.save(game);
+  public void createGame(
+      @RequestBody Game game, List<Developer> devs) {
+      System.out.println("request body id: " + game.getId());
+      Integer gid = game.getId();
+      repository.save(game);
+      Game newGame = repository.findGameById(gid);
+      newGame.setDevelopers(devs);
+      repository.save(newGame);
   }
 
   @GetMapping("/api/developers/{uid}/games")
