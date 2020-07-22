@@ -31,13 +31,14 @@ public class GameController {
 
   @PostMapping("/api/games")
   public void createGame(
-      @RequestBody Game game, List<Developer> devs) {
+      @RequestBody Game game) {
       System.out.println("request body id: " + game.getId());
       Integer gid = game.getId();
       repository.save(game);
       Game newGame = repository.findGameById(gid);
-      newGame.setDevelopers(devs);
-      repository.save(newGame);
+//      System.out.println("DEvs" + devs.toString());
+//      newGame.setDevelopers(devs);
+//      repository.save(newGame);
   }
 
   @GetMapping("/api/developers/{uid}/games")

@@ -18,9 +18,9 @@ public class Consumer implements User {
   public Consumer() {
   }
 
-  public Consumer(Integer id) {
-    this.id = id;
-  }
+//  public Consumer(Integer id) {
+//    this.id = id;
+//  }
 
   public List<Review> getReviews() {
     return reviews;

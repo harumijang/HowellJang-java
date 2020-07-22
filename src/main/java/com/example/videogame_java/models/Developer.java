@@ -27,9 +27,9 @@ public class Developer implements User {
   @ManyToMany(fetch = FetchType.LAZY)
   private List<Game> games;
 
-  public Developer(Integer id) {
-    this.id = id;
-  }
+//  public Developer(Integer id) {
+//    this.id = id;
+//  }
 
   public Developer() {
   }

@@ -36,9 +36,9 @@ public class Game {
   private String imgURLs;
 
 
-  public Game(Integer id) {
-    this.id = id;
-  }
+//  public Game(Integer id) {
+//    this.id = id;
+//  }
 
   public Game() {}
 
